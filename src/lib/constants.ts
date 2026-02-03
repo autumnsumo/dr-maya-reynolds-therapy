@@ -31,7 +31,7 @@ export const OFFICE_INFO = {
       alt: "Private therapy consultation room - safe and confidential space for sessions"
     },
     {
-      src: "/images/office-3.jpg",
+      src: "/images/office-3.jpeg",
       alt: "Therapy office seating area - comfortable environment for healing and growth"
     }
   ]

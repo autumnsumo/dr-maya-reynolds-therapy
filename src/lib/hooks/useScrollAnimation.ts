@@ -19,7 +19,8 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
 
   const [isVisible, setIsVisible] = useState(false)
   const [hasTriggered, setHasTriggered] = useState(false)
-  const elementRef = useRef<HTMLElement>(null)
+  // Changed from HTMLElement to HTMLDivElement to fix strict type errors
+  const elementRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const element = elementRef.current
@@ -51,7 +52,8 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
 
 export function useStaggeredAnimation(itemCount: number, staggerDelay: number = 100) {
   const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set())
-  const containerRef = useRef<HTMLElement>(null)
+  // Changed from HTMLElement to HTMLDivElement
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const container = containerRef.current
@@ -63,7 +65,13 @@ export function useStaggeredAnimation(itemCount: number, staggerDelay: number = 
           // Stagger the animation of items
           for (let i = 0; i < itemCount; i++) {
             setTimeout(() => {
-              setVisibleItems(prev => new Set([...prev, i]))
+              // FIX: Replaced spread syntax [...prev] with explicit add()
+              // This fixes the "downlevelIteration" build error
+              setVisibleItems(prev => {
+                const newSet = new Set(prev)
+                newSet.add(i)
+                return newSet
+              })
             }, i * staggerDelay)
           }
         }
@@ -83,7 +91,8 @@ export function useStaggeredAnimation(itemCount: number, staggerDelay: number = 
 
 export function useParallaxScroll(speed: number = 0.5) {
   const [offset, setOffset] = useState(0)
-  const elementRef = useRef<HTMLElement>(null)
+  // Changed from HTMLElement to HTMLDivElement
+  const elementRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {

@@ -1,7 +1,6 @@
 # Dr. Maya Reynolds - Therapy Practice Website
 
-> **Live Demo**: [Coming Soon - Deployment in Progress]  
-> **Repository**: [GitHub Repository URL]
+> **Live Demo**: [https://dr-maya-reynolds-therapy-eight.vercel.app/]  
 
 A professional therapy practice website built with Next.js and Tailwind CSS, transforming the Lilac template into a custom design for Dr. Maya Reynolds, a licensed clinical psychologist in Santa Monica, CA.
 

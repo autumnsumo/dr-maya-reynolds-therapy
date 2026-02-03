@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, RefObject } from 'react'
 import { useScrollAnimation, useStaggeredAnimation, useParallaxScroll, useTypewriterEffect } from '../../lib/hooks/useScrollAnimation'
 
 interface AnimatedSectionProps {
@@ -41,7 +41,7 @@ export function AnimatedSection({
 
   return (
     <div
-      ref={elementRef}
+      ref={elementRef as RefObject<HTMLDivElement>}
       className={`transition-all duration-1000 ease-out ${animationClasses[animation]} ${className}`}
     >
       {children}
@@ -59,7 +59,7 @@ export function StaggeredList({ children, className = '', staggerDelay = 150 }: 
   const { containerRef, visibleItems } = useStaggeredAnimation(children.length, staggerDelay)
 
   return (
-    <div ref={containerRef} className={className}>
+    <div ref={containerRef as RefObject<HTMLDivElement>} className={className}>
       {children.map((child, index) => (
         <div
           key={index}
@@ -87,7 +87,7 @@ export function ParallaxElement({ children, speed = 0.3, className = '' }: Paral
 
   return (
     <div
-      ref={elementRef}
+      ref={elementRef as RefObject<HTMLDivElement>}
       className={className}
       style={{ transform: `translateY(${offset}px)` }}
     >
@@ -118,7 +118,7 @@ export function TypewriterText({
   }
 
   return (
-    <span ref={elementRef} className={className}>
+    <span ref={elementRef as RefObject<HTMLSpanElement>} className={className}>
       {displayText}
       <span className="animate-pulse">|</span>
     </span>
